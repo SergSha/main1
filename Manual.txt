@@ -1,0 +1,70 @@
+# Enter with root
+sudo -i
+
+# Rename host
+hostnamectl set-hostname main1
+
+# Edit network setting
+vi /etc/sysconfig/network-scripts/ifcfg-enp0s3
+
+# comment line BOOTPROTO="dhcp"
+#BOOTPROTO="dhcp"
+
+# add next lines
+BOOTPROTO="static"
+IPADDR=10.0.1.1
+NETMASK=255.255.255.0
+GATEWAY=10.0.1.1
+DNS1=10.0.1.1
+DNS2=8.8.8.8
+
+# Restart host
+shutdown -r now
+
+# Enter with root
+sudo -i
+
+# Make pair keys
+ssh-keygen #Enter Enter Enter
+
+# Copy text of pub key and paste into GitHub:
+cat /root/.ssh/id_rsa.pub
+https://github.com/settings/keys
+
+# Install git
+yum -y install git
+
+# Connect to GitHub repo (main1)
+git clone git@github.com:SergSha/main1.git
+
+# Make the file main1_inst_set.sh execute
+chmod u+x /root/main1/main1_inst_set.sh
+
+# Start main1_inst_set.sh
+/root/main1/main1_inst_set.sh
+
+# Создаю пользователя для репликации
+CREATE USER repl@'10.0.1.12' IDENTIFIED WITH 'caching_sha2_password' BY 'Tn91Uk57@';
+
+# Даю пользователю repl права на репликацию
+GRANT REPLICATION SLAVE ON *.* TO repl@'10.0.1.12';
+
+В replica vi /etc/my.cnf
+добавляю строки
+server_id = 2
+
+и рекомендуется включать для replica, чтобы запретить вносить изменения
+innodb_read_only = 1
+
+# Остановим Slave
+STOP SLAVE;
+
+# получаю публичный ключ
+CHANGE MASTER TO MASTER_HOST='10.0.1.11', MASTER_USER='repl', MASTER_PASSWORD='Tn91Uk57@',
+MASTER_LOG_FILE='binlog.000002', MASTER_LOG_POS=688, GET_MASTER_PUBLIC_KEY = 1;
+
+# запускаю Slave
+START SLAVE;
+
+# проверяю статус Slave
+SHOW SLAVE STATUS\G
