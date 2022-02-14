@@ -16,6 +16,9 @@ yum -y install httpd
 # Add index.html to path /var/www/html/
 cp -f /root/main1/index.html /var/www/html/
 
+# Add main1_conf_upd.sh to cron.daily
+cp -f /root/main1/main1_conf_upd.sh /etc/cron.daily/
+
 # Start httpd
 systemctl start httpd
 
