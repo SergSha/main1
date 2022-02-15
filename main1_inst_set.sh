@@ -43,7 +43,7 @@ systemctl enable mysqld
 systemctl status mysqld
 
 # Port 3306
-ss –ntlp | grep 3306
+ss -ntlp | grep 3306
 
 # Get a temporary root password 
 grep "A temporary password" /var/log/mysqld.log
