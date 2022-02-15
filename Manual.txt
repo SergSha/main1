@@ -4,7 +4,7 @@ sudo -i
 # Rename host
 hostnamectl set-hostname main1
 
-# Edit network setting
+# Edit network setting (Warning: the network card make internal)
 vi /etc/sysconfig/network-scripts/ifcfg-enp0s3
 
 # comment line BOOTPROTO="dhcp"
