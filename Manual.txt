@@ -34,14 +34,14 @@ https://github.com/settings/keys
 # Install git
 yum -y install git
 
-# Connect to GitHub repo (main1)
-git clone git@github.com:SergSha/main1.git
+# Connect to GitHub repo (source)
+git clone git@github.com:SergSha/source.git
 
 # Make the file main1_inst_set.sh execute
-chmod u+x /root/main1/main1_inst_set.sh
+chmod u+x /root/source/source_inst_set.sh
 
-# Start main1_inst_set.sh
-/root/main1/main1_inst_set.sh
+# Start source_inst_set.sh
+/root/source/source_inst_set.sh
 
 # Start MySQL command console
 mysql -uroot -p
