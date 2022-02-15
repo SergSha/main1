@@ -43,7 +43,10 @@ chmod u+x /root/main1/main1_inst_set.sh
 # Start main1_inst_set.sh
 /root/main1/main1_inst_set.sh
 
-# Создаю пользователя для репликации
+# Start MySQL command console
+mysql -uroot -p
+
+# Add user for replication
 CREATE USER repl@'10.0.1.12' IDENTIFIED WITH 'caching_sha2_password' BY 'Tn91Uk57@';
 
 # Даю пользователю repl права на репликацию
