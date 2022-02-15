@@ -2,7 +2,7 @@
 sudo -i
 
 # Rename host
-hostnamectl set-hostname main1
+hostnamectl set-hostname source
 
 # Edit network setting (Warning: the network card make internal)
 vi /etc/sysconfig/network-scripts/ifcfg-enp0s3
@@ -38,10 +38,10 @@ yum -y install git
 git clone git@github.com:SergSha/source.git
 
 # Make the file main1_inst_set.sh execute
-chmod u+x /root/source/source_inst_set.sh
+chmod u+x /root/source/inst_set.sh
 
 # Start source_inst_set.sh
-/root/source/source_inst_set.sh
+/root/source/inst_set.sh
 
 # Start MySQL command console
 mysql -uroot -p
