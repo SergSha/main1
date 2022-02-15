@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Update from GitHub
-cd /root/main1/
+cd /root/source/
 git pull origin main
 
 # Update index.html in /var/www/html/
-cp -f /root/main1/index.html /var/www/html/
+cp -f /root/source/index.html /var/www/html/
 
-# Reload nginx configs
+# Reload httpd configs
 systemctl reload httpd
