@@ -37,7 +37,7 @@ yum -y install git
 # Connect to GitHub repo (source)
 git clone git@github.com:SergSha/source.git
 
-# Make the file main1_inst_set.sh execute
+# Make the file inst_set.sh execute
 chmod u+x /root/source/inst_set.sh
 
 # Start source_inst_set.sh
