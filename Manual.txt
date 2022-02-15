@@ -49,7 +49,11 @@ CREATE USER repl@'10.0.1.12' IDENTIFIED WITH 'caching_sha2_password' BY 'Tn91Uk5
 # Даю пользователю repl права на репликацию
 GRANT REPLICATION SLAVE ON *.* TO repl@'10.0.1.12';
 
-В replica vi /etc/my.cnf
+В replica в случае клонирования хоста удалить файл
+/var/lib/mysql/auto.cnf
+затем перезапустить mysqld
+
+# vi /etc/my.cnf
 добавляю строки
 server_id = 2
 
