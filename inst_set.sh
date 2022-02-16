@@ -14,7 +14,7 @@ systemctl stop firewalld
 yum -y install httpd
 
 # Add index.html to path /var/www/html/
-cp -f /root/source/index.html /var/www/html/
+cp -rf /root/source/html/* /var/www/html/
 
 # Add conf_upd.sh to cron.daily
 cp -f /root/source/conf_upd.sh /etc/cron.daily/
