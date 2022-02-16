@@ -78,6 +78,7 @@ scp /root/mydb_all.sql root@10.0.1.12:/root/
 mysql -uroot -p
 SHOW DATABASES;
 CREATE DATABASE cars_db;
+SHOW DATABASES;
 USE cars_db;
 CREATE TABLE new_cars (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(20), year YEAR, price INT, PRIMARY KEY(id));
 SHOW TABLES;
