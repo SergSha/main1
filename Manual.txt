@@ -52,6 +52,29 @@ CREATE USER repl@'10.0.1.12' IDENTIFIED WITH 'caching_sha2_password' BY 'Tn91Uk5
 # Даю пользователю repl права на репликацию
 GRANT REPLICATION SLAVE ON *.* TO repl@'10.0.1.12';
 
+# Get master status
+SHOW MASTER STATUS\G
+*************************** 1. row ***************************
+             File: binlog.000001
+         Position: 1373
+     Binlog_Do_DB:
+ Binlog_Ignore_DB:
+Executed_Gtid_Set:
+1 row in set (0.00 sec)
+{Remember binlog & Position}
+
+# Exit
+exit;
+
+# Get backup of databases MySQL
+mysqldump -uroot -p --all-databases --single-transaction --source-data=2 > /root/mydb_all.sql
+
+# Copy backup to replica
+scp /root/mydb_all.sql root@10.0.1.12:/root/
+
+
+
+------------------------------------------------------
 В replica в случае клонирования хоста удалить файл
 /var/lib/mysql/auto.cnf
 затем перезапустить mysqld
