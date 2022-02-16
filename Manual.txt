@@ -72,29 +72,16 @@ mysqldump -uroot -p --all-databases --single-transaction --source-data=2 > /root
 # Copy backup to replica
 scp /root/mydb_all.sql root@10.0.1.12:/root/
 
-
-
+# Go to install and setting replica host
 ------------------------------------------------------
-В replica в случае клонирования хоста удалить файл
-/var/lib/mysql/auto.cnf
-затем перезапустить mysqld
+# After setting replica host
+mysql -uroot -p
+SHOW DATABASES;
+CREATE DATABASE cars_db;
+USE cars_db;
+CREATE TABLE new_cars (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(20), year YEAR, price INT, PRIMARY KEY(id));
+SHOW TABLES;
+INSERT INTO new_cars (name, year, price) VALUES ("Toyota", 2021, 20000), ("Nissan", 2021, 18000);
+SELECT * FROM new_cars;
 
-# vi /etc/my.cnf
-добавляю строки
-server_id = 2
-
-и рекомендуется включать для replica, чтобы запретить вносить изменения
-innodb_read_only = 1
-
-# Остановим Slave
-STOP SLAVE;
-
-# получаю публичный ключ
-CHANGE MASTER TO MASTER_HOST='10.0.1.11', MASTER_USER='repl', MASTER_PASSWORD='Tn91Uk57@',
-MASTER_LOG_FILE='binlog.000002', MASTER_LOG_POS=688, GET_MASTER_PUBLIC_KEY = 1;
-
-# запускаю Slave
-START SLAVE;
-
-# проверяю статус Slave
-SHOW SLAVE STATUS\G
+# Go to replica host for test replication
