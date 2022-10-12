@@ -4,11 +4,15 @@ Enter with root
 sudo -i
 ```
 
-# Rename host
+Rename host
+```
 hostnamectl set-hostname source
+```
 
-# Edit network setting (Warning: the network card make internal)
+Edit network setting (Warning: the network card make internal)
+```
 vi /etc/sysconfig/network-scripts/ifcfg-enp0s3
+```
 
 # comment line BOOTPROTO="dhcp"
 #BOOTPROTO="dhcp"
