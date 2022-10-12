@@ -1,6 +1,8 @@
 # source
-# Enter with root
+Enter with root
+...
 sudo -i
+...
 
 # Rename host
 hostnamectl set-hostname source
