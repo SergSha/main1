@@ -48,6 +48,7 @@ Connect to GitHub repo for download to host
 ```
 git clone https://github.com/SergSha/source.git
 ```
+```
 #------- For to upload to GitHub -------------
 # Make pair keys
 #ssh-keygen #Enter Enter Enter
